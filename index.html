@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,11 +8,27 @@
     <link rel="stylesheet" href="css/style.css">
     <script src="js/script.js" defer></script>
 </head>
+
 <body>
     <div class="game-board">
         <img src="img/clouds.png" class="clouds">
         <img src="img/pipe.png" class="pipe">
         <img src="img/mario.gif" class="mario">
+        <!-- HUD de pontuação -->
+        <div class="score">Pontos: 0</div>
+
+        <div class="restart-btn">
+            <a href="#" aria-label="Restart Game">
+                <img src="img/reset.png" class="reset-img" alt="Restart">
+            </a>
+        </div>
+        <div class="start-btn">
+            <button class="btn-primary" type="button" aria-label="Start Game">START</button>
+        </div>
+        <!-- Overlay da contagem regressiva -->
+        <div class="countdown" aria-live="polite" aria-atomic="true"></div>
     </div>
+    <audio id="bg-music" src="audio/mario_theme.mp3" preload="auto"></audio>
 </body>
+
 </html>
