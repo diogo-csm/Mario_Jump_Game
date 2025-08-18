@@ -1,11 +1,11 @@
 /* Resetando toda a pagina */
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-.game-board{
+.game-board {
     width: 100%;
     height: 500px;
     border-bottom: 15px solid rgb(35, 160, 35);
@@ -15,61 +15,204 @@
     background: linear-gradient(#87CEEB, #E0F6FF);
 }
 
-.pipe{
+.pipe {
     position: absolute;
     bottom: 0;
     width: 80px;
     animation: pipe-animation 1.5s infinite linear;
-    
+
 }
 
-.mario{
+.mario {
     width: 150px;
     position: absolute;
     bottom: 0;
 }
 
-.clouds{
+.clouds {
     position: absolute;
     width: 550px;
     animation: clouds-animation 20s infinite linear;
 }
-.jump{
-     animation: jump 500ms   ease-out;
+
+.jump {
+    animation: jump 500ms ease-out;
 }
 
+.restart-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    visibility: hidden;
+    /* começa invisível, aparece no Game Over */
+    display: inline-block;
+    cursor: pointer;
+    z-index: 10;
+}
+
+
+.restart-btn a {
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 36px;
+    text-align: center;
+    text-decoration: none;
+    background-color: #ffa12b;
+    display: block;
+    position: relative;
+    padding: 20px 40px;
+
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    text-shadow: 0px 1px 0px #000;
+    filter: dropshadow(color=#000, offx=0px, offy=1px);
+
+    -webkit-box-shadow: inset 0 1px 0 #FFE5C4, 0 10px 0 #915100;
+    -moz-box-shadow: inset 0 1px 0 #FFE5C4, 0 10px 0 #915100;
+    box-shadow: inset 0 1px 0 #FFE5C4, 0 10px 0 #915100;
+
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.restart-btn a:active {
+    top: 10px;
+    background-color: #F78900;
+
+    -webkit-box-shadow: inset 0 1px 0 #FFE5C4, inset 0 -3px 0 #915100;
+    -moz-box-shadow: inset 0 1px 0 #FFE5C4, inset 0 -3pxpx 0 #915100;
+    box-shadow: inset 0 1px 0 #FFE5C4, inset 0 -3px 0 #915100;
+}
+
+.restart-btn::after {
+    content: "";
+    height: 100%;
+    width: 100%;
+    padding: 4px;
+    position: absolute;
+    bottom: -15px;
+    left: -4px;
+    z-index: -1;
+    background-color: #2B1800;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.reset-img {
+    width: 70px;
+}
+
+.start-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 12;
+    /* fica acima do jogo enquanto está no menu */
+}
+
+.btn-primary {
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 36px;
+    text-align: center;
+    text-decoration: none;
+    background-color: #28a745;
+    /* verde para diferenciar do restart */
+    display: block;
+    position: relative;
+    padding: 20px 40px;
+    border: none;
+    cursor: pointer;
+    text-shadow: 0px 1px 0px #000;
+    -webkit-box-shadow: inset 0 1px 0 #C8F7C5, 0 10px 0 #156d2b;
+    box-shadow: inset 0 1px 0 #C8F7C5, 0 10px 0 #156d2b;
+    border-radius: 5px;
+}
+
+.btn-primary:active {
+    top: 10px;
+    background-color: #1f8a39;
+    -webkit-box-shadow: inset 0 1px 0 #C8F7C5, inset 0 -3px 0 #156d2b;
+    box-shadow: inset 0 1px 0 #C8F7C5, inset 0 -3px 0 #156d2b;
+}
+
+/* ---- Overlay da contagem ---- */
+.countdown {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Impact, Arial, Helvetica, sans-serif;
+    font-size: 120px;
+    color: #fff;
+    text-shadow: 0 3px 0 #000, 0 0 10px rgba(0, 0, 0, .3);
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity .25s ease;
+    z-index: 9999;
+    /* *** MUITO ALTO para ficar SOBRE o start button */
+    pointer-events: none;
+    /* não bloqueia cliques */
+}
+
+/* HUD de pontuação */
+.score {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 28px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    color: white;
+    text-shadow: 2px 2px 4px #000;
+    z-index: 15; /* acima do jogo mas abaixo da contagem */
+}
+
+
 @keyframes pipe-animation {
-    from{
+    from {
         right: -80px;
     }
-    to{
+
+    to {
         right: 100%;
     }
 }
 
 @keyframes jump {
-    0%{
+    0% {
         bottom: 0;
     }
-    40%{
+
+    40% {
         bottom: 180px;
     }
-    50%{
-        bottom: 180px ;
-    }
-    60%{
+
+    50% {
         bottom: 180px;
     }
+
+    60% {
+        bottom: 180px;
+    }
+
     100% {
         bottom: 0;
     }
 }
 
 @keyframes clouds-animation {
-    from{
+    from {
         right: -550px;
     }
-    to{
+
+    to {
         right: 100%;
     }
 }
