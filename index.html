@@ -6,27 +6,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mario | Jump Game </title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/gameboy.css">
     <script src="js/script.js" defer></script>
 </head>
 
 <body>
-    <div class="game-board">
-        <img src="img/clouds.png" class="clouds">
-        <img src="img/pipe.png" class="pipe">
-        <img src="img/mario.gif" class="mario">
-        <!-- HUD de pontuação -->
-        <div class="score">Pontos: 0</div>
-
-        <div class="restart-btn">
-            <a href="#" aria-label="Restart Game">
-                <img src="img/reset.png" class="reset-img" alt="Restart">
-            </a>
+    <div class="gameboy">
+        <div class="screen-frame">
+            <div class="game-board">
+                <img src="img/clouds.png" class="clouds">
+                <img src="img/pipe.png" class="pipe">
+                <img src="img/mario.gif" class="mario">
+                <div class="score">Pontos: 0</div>
+                <div class="restart-btn">
+                    <a href="#" aria-label="Restart Game">
+                        <img src="img/reset.png" class="reset-img" alt="Restart">
+                    </a>
+                </div>
+                <div class="start-btn">
+                    <button class="btn-primary" type="button" aria-label="Start Game">START</button>
+                </div>
+                <div class="countdown" aria-live="polite" aria-atomic="true"></div>
+            </div>
         </div>
-        <div class="start-btn">
-            <button class="btn-primary" type="button" aria-label="Start Game">START</button>
+        <div class="controls-panel">
+            <div class="d-pad">
+                <div class="up-btn"></div>
+                <div class="left-btn"></div>
+                <div class="right-btn"></div>
+                <div class="down-btn"></div>
+            </div>
+            <div class="ab-buttons">
+                <button class="a-btn">A</button>
+                <button class="b-btn">B</button>
+            </div>
+            <div class="select-start-buttons">
+                <button class="select-btn">SELECT</button>
+                <button class="start-btn-console">START</button>
+            </div>
         </div>
-        <!-- Overlay da contagem regressiva -->
-        <div class="countdown" aria-live="polite" aria-atomic="true"></div>
     </div>
     <audio id="bg-music" src="audio/mario_theme.mp3" preload="auto"></audio>
 </body>
